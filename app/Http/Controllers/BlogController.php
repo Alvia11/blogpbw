@@ -18,6 +18,10 @@ class BlogController extends Controller
       return view('blog/list', compact('DataBlogs'));
     }
 
+    public function add_blog(){
+        return view('blog/add');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,9 +47,9 @@ class BlogController extends Controller
           $file-move(public_path() . '/images/', $name);
         }
 
-        $blog=new Blog;
-        $blog->judul = 'Judul Pertamaku';
-        $blog->artikel = 'Ini isi artikel Pertamaku';
+        $blog= new Blog;
+        $blog->judul = $request->get('judul');
+        $blog->artikel = $request->get('artikel');
         $blog->gambar = $name;
         $blog->save();
 
